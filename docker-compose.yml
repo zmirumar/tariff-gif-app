@@ -1,0 +1,17 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: deps 
+    container_name: tariff-app
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app                 
+      - /app/node_modules     
+      - /app/.next           
+    command: npm run dev      
+    env_file:
+      - .env.local
+    restart: unless-stopped
